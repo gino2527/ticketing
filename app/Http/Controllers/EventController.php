@@ -71,7 +71,9 @@ class EventController extends Controller
         $event->user_id         = 1;
         $event->save();
         
-        return $event;
+        $request = new Request();
+        $events = self::index($request);
+        return $events;
     }
     
     public function show(EventRequest $request, Event $event)

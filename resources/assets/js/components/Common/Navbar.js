@@ -8,6 +8,7 @@ import { Button, Dropdown, Menu, Icon, Sidebar } from 'semantic-ui-react';
 // my components
 import Cart from './Cart';
 import LoginForm from './LoginForm';
+import EventForm from './EventForm';
 
 // actions
 import { toggleCartSidebar, unsetUser } from '../redux/actions/users';
@@ -17,22 +18,20 @@ class Navbar extends React.Component {
     super(props);
 
     this.state = {
-      // cartSidebarOpen: false
+      eventFormOpen: false
     }
   }
 
-  handleCartSidebarToggle = (cartOpen) => {
-    let { cartSidebarOpen } = this.state;
+  handleEventFormModal = () => {
+    let { eventFormOpen } = this.state;
 
     this.setState({
-      cartSidebarOpen: !cartSidebarOpen,
-      ...typeof(cartOpen) === "boolean" && {
-        cartSidebarOpen: cartOpen
-      }
+      eventFormOpen: !eventFormOpen
     })
   }
   
   render() {
+    let { eventFormOpen } = this.state;
     let { cart, cartSidebarOpen, user } = this.props;
     let { pathname } = this.props.location;
 
@@ -56,9 +55,13 @@ class Navbar extends React.Component {
         >
           My Tickets
         </Menu.Item>
+        <EventForm
+          handleEventFormModal={this.handleEventFormModal}
+          open={eventFormOpen}
+        />
         <Menu.Menu position='right'>
           <a
-            className='item'
+            className='item cart'
             onClick={() => this.props.dispatch(toggleCartSidebar(true))}
           >
           {

@@ -37,7 +37,12 @@ export default (state = usersReducerDefaultState, action) => {
     case 'INCREASE_COUNT':
       let tempCart = [...state.cart];
       let item = tempCart[index];
-      item['count'] = count;
+      item['count'] =
+        count ?
+          count <= item.event.tickets_left ?
+            Number(count) :
+              Number(item.event.tickets_left)
+          : 0;
       tempCart[index] = item;
       return {
         ...state,

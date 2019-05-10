@@ -6,8 +6,10 @@ body {
       height: 3.5rem !important;
       margin: 0;
 
-      i {
-        margin: 0;
+      .cart {
+        i {
+          margin: 0;
+        }
       }
 
       .sidebar {
@@ -135,14 +137,15 @@ body {
                     font-size: 1.5rem;
                   }
                 }
-
-                .tickets {
-                  padding-left: 1rem;
-                }
               }
 
               .right {
                 justify-content: center;
+
+                .button {
+                  margin: unset;
+                  width: 100%;
+                }
               }
 
               .my {
@@ -255,9 +258,61 @@ body {
     }
   }
 
+  .modals {
+    .modal {
+      .content {
+        .eventForm {
+          .field {
+            margin-bottom: 0.5rem;
+          }
+
+          .grid {
+            margin: 0;
+
+            .row {
+              padding: 0;
+
+              .column {
+                padding: 0;
+
+                &:first-child {
+                  padding-right: 0.5rem;
+                }
+
+                &:last-child {
+                  padding-left: 0.5rem;
+                }
+              }
+
+              &:last-child {
+                .column {
+                  .field {
+                    margin-bottom: 1rem;
+                  }
+                }
+              }
+            }
+          }
+
+          .submit {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+
   .popup {
     .loginForm {
       width: 20vw;
+
+      .message {
+        .content {
+          p {
+            font-weight: bold;
+          }
+        }
+      }
     }
   }
 }

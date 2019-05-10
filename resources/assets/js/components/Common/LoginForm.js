@@ -1,8 +1,9 @@
 import React from 'react';
+import Axios from 'axios';
 import { connect } from 'react-redux';
 
 // npm components
-import { Button, Form, Menu, Popup } from 'semantic-ui-react';
+import { Button, Form, Menu, Popup, Message } from 'semantic-ui-react';
 
 // action
 import { setUser } from '../redux/actions/users'
@@ -13,6 +14,7 @@ class LoginForm extends React.Component {
 
     this.state = {
       errors: {},
+      isLoading: false,
       user: {}
     }
   }
@@ -31,12 +33,31 @@ class LoginForm extends React.Component {
     e.preventDefault();
 
     let { user } = this.state;
-    user['name'] = 'Gino';
-    this.props.dispatch(setUser(user));
+    
+    this.setState({
+      errors: {},
+      isLoading: true
+    }, () => {
+      Axios.post('/api/user/login', user)
+        .then(res => {
+          this.setState({
+            isLoading: false
+          }, () => {
+            let { user } = res.data;
+            this.props.dispatch(setUser(user));
+          })
+        })
+        .catch(err => {
+          this.setState({
+            errors: err.response.data,
+            isLoading: false
+          })
+        })
+    })
   }
 
   render() {
-    let { errors = {}, user = {} } = this.state;
+    let { errors = {}, isLoading, user = {} } = this.state;
     let { email = '', password = '' } = user;
 
     return (
@@ -46,9 +67,15 @@ class LoginForm extends React.Component {
             className='loginForm'
             onSubmit={this.handleSubmit}
           >
+          {
+            Object.keys(errors).length > 0 &&
+              <Message
+                content='Incorrect Email/Password Combination'
+                negative
+              />
+          }
             <Form.Input
               autoComplete='off'
-              error={Object.keys(errors).includes('email')}
               fluid
               label='Email'
               name='email'
@@ -58,7 +85,6 @@ class LoginForm extends React.Component {
             />
             <Form.Input
               autoComplete='off'
-              error={Object.keys(errors).includes('password')}
               fluid
               label='Password'
               name='password'
@@ -68,6 +94,8 @@ class LoginForm extends React.Component {
             />
             <Button
               content='Log In'
+              disabled={isLoading}
+              loading={isLoading}
               type='submit'
             />
           </Form>

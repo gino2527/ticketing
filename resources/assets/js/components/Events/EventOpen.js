@@ -47,40 +47,51 @@ const EventOpen = (props) => {
                   <Icon name='ticket' />
                   {count} tickets on hand
                 </div> :
-                <Button.Group>
-                  <Button
-                    animated='fade'
-                    color='green'
-                    onClick={() =>
-                      props.handleAddToCart(event)
-                    }
-                  >
-                    <Button.Content
-                      content={
-                        <div className='tickets'>
-                          <Icon name='ticket' />
-                          {tickets_left} tickets left
-                        </div>
-                      }
-                      visible
-                    />
-                    <Button.Content
+                tickets_left > 0 ?
+                  <Button.Group>
+                    <Button
+                      animated='fade'
                       color='green'
-                      content={
-                        <React.Fragment>
-                          <Icon
-                            name='cart plus'
-                          />
-                        </React.Fragment>
+                      onClick={() =>
+                        props.handleAddToCart(event)
                       }
-                      hidden
-                      icon={{
-                        name: 'cart plus',
-                        size: 'large'
-                      }}
-                    />
-                  </Button>
-                </Button.Group>
+                    >
+                      <Button.Content
+                        content={
+                          <div className='tickets'>
+                            <Icon name='ticket' />
+                            {tickets_left} tickets left
+                          </div>
+                        }
+                        visible
+                      />
+                      <Button.Content
+                        color='green'
+                        content={
+                          <React.Fragment>
+                            <Icon
+                              name='cart plus'
+                            />
+                          </React.Fragment>
+                        }
+                        hidden
+                        icon={{
+                          name: 'cart plus',
+                          size: 'large'
+                        }}
+                      />
+                    </Button>
+                  </Button.Group> :
+                  <Button
+                    content={
+                      <div className='tickets'>
+                        <Icon name='ticket' />
+                        Soldout!
+                      </div>
+                    }
+                    disabled
+                    negative
+                  />
             }
             </Grid.Column>
           </Grid.Row>

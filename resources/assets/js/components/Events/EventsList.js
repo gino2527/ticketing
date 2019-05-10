@@ -96,6 +96,7 @@ const EventsList = (props) => {
                 </span>
                 <Button
                   basic
+                  disabled={tickets_left <= 0}
                   icon={{
                     color: 'green',
                     name: 'cart plus',

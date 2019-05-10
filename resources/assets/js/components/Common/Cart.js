@@ -62,7 +62,7 @@ class Cart extends React.Component {
               } = event;
               return (
                 <Grid.Row as={Segment} key={index}>
-                  <Grid.Column width='11'>
+                  <Grid.Column width='10'>
                     <Item.Group>
                       <Item>
                         <Item.Content>
@@ -81,7 +81,7 @@ class Cart extends React.Component {
                   </Grid.Column>
                   <Grid.Column
                     className='count'
-                    width='3'
+                    width='4'
                   >
                     <Input
                       fluid

@@ -116,12 +116,17 @@ class Events extends React.Component {
     let { eventSidebarOpen } = this.state;
 
     this.setState({
-      eventOpen: {},
       eventSidebarOpen: false,
       ...Object.keys(eventOpen).length > 0 && {
-        eventOpen,
         eventSidebarOpen: !eventSidebarOpen,
       }
+    }, () => {
+      this.setState({
+        eventOpen: {},
+        ...Object.keys(eventOpen).length > 0 && {
+          eventOpen,
+        }
+      })
     })
   }
 
