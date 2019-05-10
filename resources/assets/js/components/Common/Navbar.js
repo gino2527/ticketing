@@ -45,16 +45,7 @@ class Navbar extends React.Component {
         <Menu.Item
           active={pathname === '/'}
           as={Link}
-          to=''
-        >
-          <Icon
-            name='home'
-          />
-        </Menu.Item>
-        <Menu.Item
-          active={pathname === '/events'}
-          as={Link}
-          to='events'
+          to='/'
         >
           Events
         </Menu.Item>

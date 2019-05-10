@@ -37,16 +37,6 @@ class App extends Component {
             exact path='/'
             render={() => {
               return (
-                <div>
-                  
-                </div>
-              )
-            }}
-          />
-          <Route
-            exact path='/events'
-            render={() => {
-              return (
                 <Events />
               )
             }}

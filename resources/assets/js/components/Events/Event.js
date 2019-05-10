@@ -75,7 +75,7 @@ const Event = (props) => {
                       </span>
                       <Button
                         basic
-                        disabled={tickets_left === 0}
+                        disabled={tickets_left <= 0}
                         icon={{
                           color: 'green',
                           name: 'cart plus',

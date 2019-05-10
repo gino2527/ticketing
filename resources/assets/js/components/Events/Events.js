@@ -1,6 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 // npm components
 import { Button, Dropdown, Grid, Icon, Input, Menu, Sidebar } from 'semantic-ui-react';
@@ -49,6 +50,8 @@ class Events extends React.Component {
       eventOpen: {},
       eventSidebarOpen: false,
       exporting: false,
+      results: [],
+      searchQuery: '',
       sorting: false,
       view: 'grid'
     }
@@ -126,9 +129,33 @@ class Events extends React.Component {
     window.open('/api/events/export', '_blank');
   }
 
+  handleSearchChange = (e, data) => {
+    let { events = [] } = this.props;
+    let { value } = data;
+
+    this.setState({
+      searching: true,
+      searchQuery: value
+    }, () => {
+      let re = new RegExp(_.escapeRegExp(value), 'i')
+      let isMatch = result => re.test(result.title)
+
+      let results = _.filter(events, isMatch);
+
+      this.setState({
+        searching: false,
+        results,
+      })
+    })
+    
+  }
+
   render() {
-    let { eventOpen, eventSidebarOpen, exporting, sorting, view } = this.state;
+    let { eventOpen, eventSidebarOpen, exporting, results, searching, searchQuery, sorting, view } = this.state;
     let { events } = this.props;
+    if (searchQuery) {
+      events = results;
+    }
     let rows = chunkArrayInGroups(events, 4);
   
     return (
@@ -139,7 +166,7 @@ class Events extends React.Component {
               Events sorted by&nbsp;
               <Dropdown
                 defaultValue={sortOptions[0].value}
-                disabled={sorting}
+                disabled={sorting || searchQuery.length > 0}
                 inline
                 onChange={this.handleChangeOrder}
                 options={sortOptions}
@@ -149,9 +176,12 @@ class Events extends React.Component {
           <Menu.Menu>
             <Menu.Item>
               <Input
-                disabled
+                disabled={sorting}
                 icon='search'
+                loading={searching}
+                onChange={this.handleSearchChange}
                 placeholder='Search events...'
+                value={searchQuery}
               />
             </Menu.Item>
             <Menu.Item>

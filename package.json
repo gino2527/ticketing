@@ -25,6 +25,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
