@@ -40,7 +40,7 @@ const EventOpen = (props) => {
               />
               {organiser && organiser.name}
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column className='right'>
             {
               my ?
                 <div className='my'>
