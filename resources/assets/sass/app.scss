@@ -1,0 +1,259 @@
+body {
+  #app {
+    overflow: hidden;
+
+    #nav {
+      height: 3.5rem !important;
+      margin: 0;
+
+      i {
+        margin: 0;
+      }
+
+      .sidebar {
+        width: 25vw;
+
+        > div {
+          height: 100%;
+
+          .closeSidebar {
+            padding: 1rem;
+            padding-bottom: unset;
+
+            button {
+              box-shadow: none;
+              height: 2.5rem;
+              margin: 0;
+            }
+
+            .title {
+              display: inline-block;
+              font-size: 1.25rem;
+              text-align: right;
+              width: calc(100% - 3.5rem);
+            }
+          }
+
+          .cart {
+            .grid {
+              margin: 0;
+              padding-top: 1rem;
+
+              .segment {
+                align-items: center;
+                border-left: unset;
+                border-radius: unset;
+                border-right: unset;
+                box-shadow: none;
+                display: flex;
+                margin: 0;
+                width: 100%;
+  
+                .item {
+                  padding: unset;
+                }
+
+                .count {
+                  padding: 0;
+                }
+
+                .trash {
+                  cursor: pointer;
+                }
+
+                &:not(:first-child) {
+                  border-top: unset;
+                }
+              }
+
+              #empty {
+                justify-content: center;
+              }
+
+              .buy {
+                padding: 1rem;
+
+                &:last-child {
+                  padding-top: unset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > div:not(#nav) {
+      height: calc(100vh - 3.5rem) !important;
+      max-height: calc(100vh - 3.5rem) !important;
+      margin: 0;
+      padding: 1rem;
+      overflow-y: hidden;
+
+      &:hover {
+        overflow-y: overlay;
+      }
+    }
+
+    .events {
+      > .menu:not(.sidebar) {
+        margin: 0;
+        width: 100%;
+
+        .menu {
+          margin-left: auto;
+        }
+      }
+
+      .event {
+        height: 100%;
+        margin: auto;
+        
+        .poster {
+          height: 15rem;
+        }
+
+        .extra {
+          .grid {
+            margin: 0;
+
+            .row {
+              padding: 0;
+
+              .column {
+                align-items: center;
+                display: flex;
+                padding: 0;
+
+                .buttons {
+                  margin-left: auto;
+
+                  span {
+                    align-items: center;
+                    color: rgba(0, 0, 0, 0.6) !important;
+                    display: flex;
+                    font-size: 1.5rem;
+                  }
+                }
+
+                .tickets {
+                  padding-left: 1rem;
+                }
+              }
+
+              .my {
+                  justify-content: center;
+                  color: black;
+                  font-size: 1.25rem;
+              }
+            }
+          }
+        }
+      }
+
+      > .grid {
+        margin: 0;
+      }
+
+      .table {
+        margin: 0;
+        padding: 1rem;
+
+        tr td {
+          border-top: 0px !important;
+        }
+
+        tbody {
+          tr {
+            &:nth-child(2n) {
+              background-color: rgba(0,0,0,.03) !important;
+            }
+
+            &:hover {
+              background-color: rgba(0,0,0,.07) !important;
+            }
+          }
+        }
+
+        .actions {
+          align-items: center;
+          display: flex;
+
+          button {
+            border: none;
+            border-radius: 0px;
+            box-shadow: none;
+            padding: 0.5rem 1rem;
+          }
+          
+          span {
+            color: rgba(0, 0, 0, 0.6) !important;
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .sidebar {
+        width: 30vw;
+
+        > div {
+          height: 100%;
+          padding: 1rem;
+
+          .card {
+            height: calc(100% - 2.5rem);
+            width: 100%;
+
+            .extra {
+              .avatar {
+                color: rgba(0, 0, 0, 0.7);
+                font-size: 1.25rem;
+
+                img {
+                  border: 1px solid;
+                  height: 3rem;
+                  margin-right: 0.5rem;
+                  width: 3rem;
+                }
+              }
+            }
+
+            .content {
+              .header {
+                font-size: 2rem;
+              }
+
+              .meta {
+                margin-top: 1rem;
+              }
+              
+              .description {
+                font-size: 1.25rem;
+                margin-top: 0.5rem;
+
+                &:last-child {
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+
+          .closeSidebar {
+            button {
+              box-shadow: none;
+              float: right;
+              height: 2.5rem;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .popup {
+    .loginForm {
+      width: 20vw;
+    }
+  }
+}
