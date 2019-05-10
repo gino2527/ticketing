@@ -38,11 +38,10 @@ export default (state = usersReducerDefaultState, action) => {
       let tempCart = [...state.cart];
       let item = tempCart[index];
       item['count'] =
-        count ?
-          count <= item.event.tickets_left ?
+        count &&
+          count <= item.event.tickets_left && count !== '0' ?
             Number(count) :
               Number(item.event.tickets_left)
-          : 0;
       tempCart[index] = item;
       return {
         ...state,
